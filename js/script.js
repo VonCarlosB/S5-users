@@ -1,4 +1,5 @@
 const userList = document.getElementById('listaUsuarios')
+const users = []
 
 fetch('https://jsonplaceholder.typicode.com/users').then((response) =>{
     if(!response.ok){
@@ -6,9 +7,16 @@ fetch('https://jsonplaceholder.typicode.com/users').then((response) =>{
     }
     return response.json()
 }).then((data) => {
-    console.log(data[0])
-    data.forEach(user => {
-        user.age = Math.floor(25 + Math.random()*30)
+    data.forEach(user =>{
+        let usuario = {
+            ...user,
+            age: Math.floor(25 + Math.random()*30),
+            address: `${user.address.street} ${user.address.suite}, ${user.address.city}`
+        }
+        users.push(usuario)
+    })
+}).then(() => {
+    users.forEach(user => {
         userList.innerHTML += `
             <li class="border">
                 <div id="top">
@@ -23,7 +31,7 @@ fetch('https://jsonplaceholder.typicode.com/users').then((response) =>{
                 </div>
                 <div class="info">
                     <p><b>Compañía: </b>${user.company.name}</p>
-                    <p><b>Dirección: </b>${user.address.street}, ${user.address.suite}, ${user.address.city}</p>
+                    <p><b>Dirección: </b>${user.address}</p>
                 </div>
             </li>
         `
