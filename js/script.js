@@ -36,4 +36,4 @@ fetch('https://jsonplaceholder.typicode.com/users').then((response) =>{
     /*Así se actualiza el DOM 1 sola vez.
     El .join("") sirve para juntar todos los elementos del array sin espacios, en vez de comas*/
     userList.innerHTML = resultado.join("")
-})
+}).catch(err => console.error(err))
