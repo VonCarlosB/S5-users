@@ -14,26 +14,23 @@ fetch('https://jsonplaceholder.typicode.com/users').then((response) =>{
             address: `${user.address.street} ${user.address.suite}, ${user.address.city}`
         }
         users.push(usuario)
-    })
-}).then(() => {
-    users.forEach(user => {
         userList.innerHTML += `
             <li class="border">
                 <div id="top">
                     <div class="border info">
-                        <p><b>Nombre: </b>${user.name}</p>
-                        <p><b>Edad: </b>${user.age}</p>
-                        <p><b>Username: </b>${user.username}</p>
-                        <p><b>Teléfono: </b>${user.phone}</p>
-                        <p><b>Email: </b>${user.email}</p>
+                        <p><b>Nombre: </b>${usuario.name}</p>
+                        <p><b>Edad: </b>${usuario.age}</p>
+                        <p><b>Username: </b>${usuario.username}</p>
+                        <p><b>Teléfono: </b>${usuario.phone}</p>
+                        <p><b>Email: </b>${usuario.email}</p>
                     </div>
-                    <img src="../assets/img/${user.id}.jpeg" height=65>
+                    <img src="../assets/img/${usuario.id}.jpeg" height=65>
                 </div>
                 <div class="info">
-                    <p><b>Compañía: </b>${user.company.name}</p>
-                    <p><b>Dirección: </b>${user.address}</p>
+                    <p><b>Compañía: </b>${usuario.company.name}</p>
+                    <p><b>Dirección: </b>${usuario.address}</p>
                 </div>
             </li>
         `
-    });
+    })
 })
