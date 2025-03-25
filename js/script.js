@@ -7,14 +7,14 @@ fetch('https://jsonplaceholder.typicode.com/users').then((response) =>{
     }
     return response.json()
 }).then((data) => {
-    data.forEach(user =>{
+    const resultado = data.map(user =>{
         let usuario = {
             ...user,
             age: Math.floor(25 + Math.random()*30),
             address: `${user.address.street} ${user.address.suite}, ${user.address.city}`
         }
         users.push(usuario)
-        userList.innerHTML += `
+        return `
             <li class="border">
                 <div id="top">
                     <div class="border info">
@@ -33,4 +33,7 @@ fetch('https://jsonplaceholder.typicode.com/users').then((response) =>{
             </li>
         `
     })
+    /*Así se actualiza el DOM 1 sola vez.
+    El .join("") sirve para juntar todos los elementos del array sin espacios, en vez de comas*/
+    userList.innerHTML = resultado.join("")
 })
